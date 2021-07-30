@@ -1,0 +1,14 @@
+_SECTION_BEGIN("William's % R");
+SetChartOptions(0,0,ChartGrid20|ChartGrid80,0,100);
+periods = 50 ;
+R = 100 - 100 * ( HHV( H, periods ) - C )/( HHV( H, periods ) - LLV( L, periods ) ); 
+
+ROverboughtColor = ParamColor("R Overbought Color",colorPlum);
+ROversoldColor = ParamColor("R Oversold Color",colorPlum);
+ 
+Plot( R,"",colorWhite,styleLine|4 );
+Plot(80,"",colorWhite,styleDashed);
+Plot(20,"",colorWhite,styleDashed);
+PlotOHLC(R,R,80,R,"",IIf(R>50,ROverboughtColor,ROversoldColor),styleCloud|styleClipMinMax,20,80);
+
+_SECTION_END();
